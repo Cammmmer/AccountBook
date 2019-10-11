@@ -47,14 +47,15 @@ public class SplashActivity extends BaseActivity {
         mTxtAppName.setTypeface(typeface);
         setVersion();
 
-        new Handler().postDelayed(new Runnable() {
+        new Handler().post(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent();
                 // 判断用户是否更新了应用和登录
                 if (!isUpdateApp() && UserUtils.checkLogin()) {
                     User user = UserUtils.getUser();
-                    boolean phoneVerified = user.isMobilePhoneVerified();
+                    //TODO 添加验证手机号
+                    /*boolean phoneVerified = user.isMobilePhoneVerified();
                     // 进入首页
                     if(phoneVerified){
                         // 进入首页
@@ -62,6 +63,9 @@ public class SplashActivity extends BaseActivity {
                     }else{
                         // 进入登录页
                         intent.setClass(mContext, LoginActivity.class);
+                    }*/
+                    if (user != null) {
+                        intent.setClass(mContext, MainActivity.class);
                     }
                 } else {
                     // 进入登录页
@@ -70,7 +74,7 @@ public class SplashActivity extends BaseActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1000);
+        });
     }
 
     /**
