@@ -84,7 +84,7 @@ dependencies {
     // 消息传递库
     compile 'org.greenrobot:eventbus:3.0.0'
     // 转场动画库
-    compile 'me.immortalz:transitionhelper:1.0.6'
+    compile 'me.immortalz:transitionhelper:2.3.4'
     // RecyclerView Adapter 库
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.17'
     // MD 风格输入 Dialog

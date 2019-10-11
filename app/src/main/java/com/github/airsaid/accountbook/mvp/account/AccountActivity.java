@@ -85,24 +85,28 @@ public class AccountActivity extends BaseActivity {
         if(mIsEdit) return;
 
         int color = UiUtils.getResourceId(mContext, R.attr.colorPrimary, R.color.colorPrimary);
-        TransitionsHeleper.getInstance().setShowMethod(new ColorShowMethod(R.color.white, color) {
-            @Override
-            public void loadCopyView(InfoBean bean, ImageView copyView) {
-                AnimatorSet set = new AnimatorSet();
-                set.playTogether(
-                        ObjectAnimator.ofFloat(copyView, AnimUtils.ROTATION, 0, 180),
-                        ObjectAnimator.ofFloat(copyView, AnimUtils.SCALE_X, 1, 0),
-                        ObjectAnimator.ofFloat(copyView, AnimUtils.SCALE_Y, 1, 0)
-                );
-                set.setInterpolator(new AccelerateInterpolator());
-                set.setDuration(duration / 4 * 5).start();
-            }
+        final int duration = 150;
+        TransitionsHeleper.build(this)
+                .setShowMethod(new ColorShowMethod(R.color.white, color) {
+                    @Override
+                    public void loadPlaceholder(InfoBean bean, ImageView placeholder) {
+                        AnimatorSet set = new AnimatorSet();
+                        set.playTogether(
+                                ObjectAnimator.ofFloat(placeholder, AnimUtils.ROTATION, 0, 180),
+                                ObjectAnimator.ofFloat(placeholder, AnimUtils.SCALE_X, 1, 0),
+                                ObjectAnimator.ofFloat(placeholder, AnimUtils.SCALE_Y, 1, 0)
+                        );
+                        set.setInterpolator(new AccelerateInterpolator());
+                        set.setDuration(duration).start();
+                    }
 
-            @Override
-            public void loadTargetView(InfoBean bean, ImageView targetView) {
-
-            }
-        }).show(this, null);
+                    @Override
+                    public void loadTargetView(InfoBean bean, View targetView) {
+                    }
+                })
+                .setExposeColor(getResources().getColor(color))
+                .setTransitionDuration(duration)
+                .show();
     }
 
     @Override
@@ -155,4 +159,9 @@ public class AccountActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        TransitionsHeleper.unbind(this);
+        super.onDestroy();
+    }
 }
