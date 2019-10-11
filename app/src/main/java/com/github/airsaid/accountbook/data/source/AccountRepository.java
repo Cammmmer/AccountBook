@@ -321,7 +321,7 @@ public class AccountRepository implements AccountDataSource {
         book.setCover(UiUtils.getString(R.string.def_book_cover));
         book.setScene(UiUtils.getString(R.string.def_book_scene));
         book.addShare(user);
-        book.setBid(10000);
+        //book.setBid(10000);
         book.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {

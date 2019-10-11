@@ -35,8 +35,8 @@ public class AccountBook extends AVObject {
     /** 该帐薄下所有账目总收入 */
     public double totalIncome = 0.00;
 
-    /** 设置帐薄 id */
-    public void setBid(long bid){
+    /** 设置帐薄 id  设置数据库自增*/
+    public void setBid(long bid) {
         put(Api.BID, bid);
     }
 
