@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<types xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Row1 -->
+    <type
+        name="吃喝"
+        icon="ic_cost_type_0" />
+    <type
+        name="交通"
+        icon="ic_cost_type_1" />
+    <type
+        name="购物"
+        icon="ic_cost_type_2" />
+    <type
+        name="生活用品"
+        icon="ic_cost_type_3" />
+    <type
+        name="数码"
+        icon="ic_cost_type_4" />
+
+
+    <!--Row2 -->
+    <type
+        name="娱乐"
+        icon="ic_cost_type_5" />
+    <type
+        name="房租"
+        icon="ic_cost_type_6" />
+    <type
+        name="旅游"
+        icon="ic_cost_type_7" />
+    <type
+        name="医疗"
+        icon="ic_cost_type_8" />
+    <type
+        name="水电"
+        icon="ic_cost_type_9" />
+
+    <!--Row3 -->
+    <type
+        name="母婴"
+        icon="ic_cost_type_10" />
+    <type
+        name="运动"
+        icon="ic_cost_type_11" />
+    <type
+        name="丽人"
+        icon="ic_cost_type_12" />
+    <type
+        name="维修"
+        icon="ic_cost_type_13" />
+    <type
+        name="学习"
+        icon="ic_cost_type_14" />
+</types>

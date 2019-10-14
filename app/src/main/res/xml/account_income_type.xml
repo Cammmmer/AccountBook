@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<types xmlns:android="http://schemas.android.com/apk/res/android">
+    <type
+        name="工资"
+        icon="ic_income_type_0" />
+    <type
+        name="零花钱"
+        icon="ic_income_type_1" />
+    <type
+        name="外快"
+        icon="ic_income_type_2" />
+    <type
+        name="投资"
+        icon="ic_income_type_3" />
+    <type
+        name="意外收入"
+        icon="ic_income_type_4" />
+    <type
+        name="红包"
+        icon="ic_income_type_4" />
+</types>

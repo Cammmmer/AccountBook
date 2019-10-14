@@ -33,8 +33,12 @@ import com.github.airsaid.accountbook.util.RegexUtils;
 import com.github.airsaid.accountbook.util.ToastUtils;
 import com.github.airsaid.accountbook.util.UiUtils;
 import com.github.airsaid.accountbook.util.UserUtils;
+import com.github.airsaid.accountbook.util.XmlUtils;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -218,7 +222,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
     }
 
     private void saveTypeData(String uid, TypeDao dao, int type){
-        String[] types;
+        /*String[] types;
         if(type == AppConfig.TYPE_COST){
             types = getResources().getStringArray(R.array.account_cost_type);
         }else{
@@ -233,6 +237,23 @@ public class LoginFragment extends BaseFragment implements LoginContract.View, V
             t.setIcon(type == AppConfig.TYPE_COST ? "ic_cost_type_".concat(String.valueOf(i))
                     : "ic_income_type_".concat(String.valueOf(i)));
             dao.insert(t);
+        }*/
+
+        try {
+            List<Type> list = XmlUtils.INSTANCE.getTypeFromXML(getActivity(),
+                    type == AppConfig.TYPE_COST ?
+                            R.xml.account_cost_type : (R.xml.account_income_type));
+            for (int i = 0; i < list.size(); i++) {
+                Type t = list.get(i);
+                t.setUid(uid);
+                t.setIndex(i);
+                t.setType(type);
+                dao.insert(t);
+            }
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

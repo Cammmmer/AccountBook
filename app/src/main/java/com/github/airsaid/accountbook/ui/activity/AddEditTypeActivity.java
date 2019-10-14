@@ -26,8 +26,12 @@ import com.github.airsaid.accountbook.data.TypeDao;
 import com.github.airsaid.accountbook.util.ToastUtils;
 import com.github.airsaid.accountbook.util.UiUtils;
 import com.github.airsaid.accountbook.util.UserUtils;
+import com.github.airsaid.accountbook.util.XmlUtils;
 import com.github.airsaid.accountbook.widget.recycler.OnSimpleClickListener;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,11 +107,18 @@ public class AddEditTypeActivity extends BaseActivity {
         }
 
         mTypes = new ArrayList<>();
-        String[] costTypes = getResources().getStringArray(R.array.account_cost_type);
-        String[] incomeTypes = getResources().getStringArray(R.array.account_income_type);
-        addTypeData(costTypes.length, "ic_cost_type_", typeIcon);
-        addTypeData(incomeTypes.length, "ic_income_type_", typeIcon);
-        addTypeData(75, "type_add_", typeIcon);
+        try {
+            List<Type> costTypes = XmlUtils.INSTANCE.getTypeFromXML(this, R.xml.account_cost_type);
+            List<Type> incomeTypes = XmlUtils.INSTANCE.getTypeFromXML(this, R.xml.account_income_type);
+            addTypeData(costTypes.size(), "ic_cost_type_", typeIcon);
+            addTypeData(incomeTypes.size(), "ic_income_type_", typeIcon);
+            addTypeData(75, "type_add_", typeIcon);
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
