@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'kotlin-android'
+//apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'org.greenrobot.greendao'
 
 Properties properties = new Properties()
@@ -15,6 +16,7 @@ android {
         targetSdkVersion 25
         versionCode 9
         versionName "1.0.8"
+        multiDexEnabled true
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -58,6 +60,12 @@ android {
         abortOnError false
     }
 
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g" //specify the heap size for the dex process
+        preDexLibraries = false
+    }
+
 }
 
 dependencies {
@@ -80,7 +88,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     // 控件注解库
     compile 'com.jakewharton:butterknife:8.0.1'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.1'
     // 消息传递库
     compile 'org.greenrobot:eventbus:3.0.0'
     // 转场动画库
@@ -98,4 +106,11 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     // 图表库
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //android-apt
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.4'
+}
+repositories {
+    mavenCentral()
 }
